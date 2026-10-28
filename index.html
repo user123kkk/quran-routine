@@ -56,6 +56,18 @@ input,select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-ra
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 .log li{margin:4px 0}
 a{color:var(--accent)}
+.tabs{display:flex;gap:4px;margin:14px 0 4px;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;padding:10px 6px;border:0;border-bottom:2px solid transparent;background:none;color:var(--muted);font:inherit;font-weight:600;cursor:pointer}
+.tabs button.active{color:var(--ink);border-bottom-color:var(--accent)}
+h2.mh{font-size:17px;margin:26px 0 6px}
+.ar-q{font-family:"Amiri Quran",Amiri,serif;font-size:23px;line-height:2;direction:rtl;text-align:right;margin-bottom:6px}
+.card p{margin:6px 0}
+.src{font-size:13px;color:var(--accent)}
+ol.todo{margin:0;padding-left:20px}
+ol.todo li{margin:8px 0}
+.page-ar{font-family:"Amiri Quran",Amiri,serif;font-size:27px;line-height:2.3;direction:rtl;text-align:justify}
+.page-no{text-align:center;color:var(--muted);font-size:13px;margin-top:6px}
+.surah-title{text-align:center;font-family:Amiri,serif;font-size:22px;color:var(--accent);margin:10px 0 0}
 .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:max(20px,env(safe-area-inset-top,0px))}
 @media (max-width:600px){
   .wrap{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
@@ -75,6 +87,129 @@ a{color:var(--accent)}
     <div class="meta" id="meta"></div>
   </header>
 
+  <nav class="tabs" id="tabs">
+    <button data-tab="learn" class="active">Lernen</button>
+    <button data-tab="wird">Wird</button>
+    <button data-tab="manhaj">Manhaj</button>
+  </nav>
+
+  <section id="tab-wird" hidden>
+    <div class="card">
+      <b>Täglicher Wird – Khatm</b>
+      <p class="hint" style="margin:6px 0 0">Neben dem Lernen der 10 Ayat: fortlaufendes Lesen des ganzen Quran. ʿAbdullāh ibn ʿAmr wurde gesagt: „Lies den Quran in einem Monat“, dann bis zu sieben Tagen, „und nicht mehr als das“ (al-Bukhārī 5054, Muslim 1159). Tempo unter Einstellungen.</p>
+    </div>
+    <div class="card" id="wird-head"></div>
+    <div id="wird-view"></div>
+  </section>
+
+  <section id="tab-manhaj" hidden>
+    <div class="card">
+      <b>Wie die Salaf den Quran lasen</b>
+      <p class="hint" style="margin:6px 0 0">Nur Belege mit geprüfter Quelle. Quran, Ṣaḥīḥayn, und Überlieferungen mit Urteil eines Ḥadīth-Gelehrten. Keine eigene Meinung.</p>
+    </div>
+
+    <h2 class="mh">1 · Lernen: Wissen und Handeln zusammen</h2>
+    <div class="card">
+      <div class="ar-q">كانوا يقترئون من رسول الله ﷺ عشر آيات، فلا يأخذون في العشر الأخرى حتى يعلموا ما في هذه من العلم والعمل، قالوا: فعلمنا العلم والعمل</div>
+      <p>Abū ʿAbd ar-Raḥmān as-Sulamī über die Sahaba, die ihm den Quran beibrachten (u.a. ʿUthmān, Ibn Masʿūd): Zehn Ayat, und erst weiter, wenn Wissen und Handeln darin gelernt waren.</p>
+      <p class="src">Aḥmad, aṭ-Ṭabarī (Muqaddima des Tafsīr), aṭ-Ṭaḥāwī (Mushkil al-Āthār 4/83) · Shuʿayb al-Arnaʾūṭ: Isnād stark. <a href="https://dorar.net/h/ea25PlEx" target="_blank" rel="noopener">dorar.net</a></p>
+    </div>
+    <div class="card">
+      <div class="ar-q">كَانَ خُلُقُهُ الْقُرْآنَ</div>
+      <p>ʿĀʾisha über den Propheten ﷺ: „Sein Charakter war der Quran.“ Das Ziel des Lesens ist das Handeln.</p>
+      <p class="src">Muslim 746</p>
+    </div>
+    <div class="card">
+      <div class="ar-q">كِتَٰبٌ أَنزَلْنَٰهُ إِلَيْكَ مُبَٰرَكٌ لِّيَدَّبَّرُوٓا۟ ءَايَٰتِهِۦ وَلِيَتَذَكَّرَ أُو۟لُوا۟ ٱلْأَلْبَٰبِ</div>
+      <p>„Ein gesegnetes Buch, damit sie über seine Ayat nachdenken und damit die Verständigen bedenken.“ Siehe auch 47:24: „Denken sie nicht über den Quran nach, oder sind an ihren Herzen Schlösser?“</p>
+      <p class="src">Ṣād 38:29 · Muḥammad 47:24</p>
+    </div>
+
+    <h2 class="mh">2 · Lesen: langsam, Aya für Aya, mit Reaktion</h2>
+    <div class="card">
+      <div class="ar-q">وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا</div>
+      <p>„Und trage den Quran langsam und deutlich vor.“</p>
+      <p class="src">al-Muzzammil 73:4</p>
+    </div>
+    <div class="card">
+      <p>Anas wurde nach der Rezitation des Propheten ﷺ gefragt: „Sie war gedehnt.“ Er las die Basmala und dehnte jedes Wort.</p>
+      <p class="src">al-Bukhārī 5046</p>
+    </div>
+    <div class="card">
+      <p>Umm Salama: Er ﷺ unterbrach seine Rezitation Aya für Aya: „al-ḥamdu lillāhi rabbi l-ʿālamīn“, dann hielt er an; „ar-raḥmāni r-raḥīm“, dann hielt er an.</p>
+      <p class="src">Abū Dāwūd 4001, at-Tirmidhī 2927 · al-Albānī: ṣaḥīḥ</p>
+    </div>
+    <div class="card">
+      <p>Ein Mann sagte zu Ibn Masʿūd, er habe in einer Rakʿa alle Mufaṣṣal-Suren gelesen. Ibn Masʿūd: „Ein Hasten wie das Hasten von Gedichten?“ Hastiges Herunterlesen ist getadelt.</p>
+      <p class="src">al-Bukhārī 775, Muslim 822</p>
+    </div>
+    <div class="card">
+      <p>Ḥudhayfa betete nachts mit dem Propheten ﷺ: Er las langsam. Kam eine Aya mit Lobpreis, pries er Allah. Kam eine Bitte, bat er. Kam Zufluchtnahme, nahm er Zuflucht.</p>
+      <p class="src">Muslim 772</p>
+    </div>
+    <div class="card">
+      <p>Ibn Masʿūd las dem Propheten ﷺ Sūrat an-Nisāʾ vor. Bei Aya 41 sagte er: „Genug.“ Seine Augen flossen über vor Tränen.</p>
+      <p class="src">al-Bukhārī 5050, Muslim 800</p>
+    </div>
+
+    <h2 class="mh">3 · Menge: Khatm nicht unter drei Tagen</h2>
+    <div class="card">
+      <p>Zu ʿAbdullāh ibn ʿAmr: „Lies den Quran in einem Monat.“ Er bat um mehr, bis: „Dann lies ihn in sieben, und nicht mehr als das.“</p>
+      <p class="src">al-Bukhārī 5054, Muslim 1159</p>
+    </div>
+    <div class="card">
+      <div class="ar-q">لَمْ يَفْقَهْ مَنْ قَرَأَ الْقُرْآنَ فِي أَقَلَّ مِنْ ثَلَاثٍ</div>
+      <p>„Wer den Quran in weniger als drei Tagen liest, hat ihn nicht verstanden.“</p>
+      <p class="src">Abū Dāwūd 1394, at-Tirmidhī 2949 · al-Albānī: ṣaḥīḥ</p>
+    </div>
+
+    <h2 class="mh">4 · Bewahren: wiederholen und im Gebet lesen</h2>
+    <div class="card">
+      <p>„Pflegt diesen Quran. Bei Dem, in Dessen Hand Muḥammads Seele ist, er entwischt schneller als Kamele aus ihren Fesseln.“</p>
+      <p class="src">al-Bukhārī 5033, Muslim 791</p>
+    </div>
+    <div class="card">
+      <p>„Der Träger des Quran ist wie der Besitzer gefesselter Kamele: Pflegt er sie, hält er sie.“ Bei Muslim: „Steht er auf und liest ihn nachts und tags, behält er ihn.“</p>
+      <p class="src">al-Bukhārī 5031, Muslim 789</p>
+    </div>
+    <div class="card">
+      <p>Jibrīl ging mit dem Propheten ﷺ jedes Jahr im Ramaḍān den Quran durch, im Todesjahr zweimal.</p>
+      <p class="src">al-Bukhārī 4998</p>
+    </div>
+
+    <h2 class="mh">5 · Verstehen: Tafsīr nach dem Weg der Salaf</h2>
+    <div class="card">
+      <p>Reihenfolge der Erklärung: Quran durch Quran, dann durch die Sunna, dann durch die Aussagen der Sahaba, dann der Tābiʿūn, dann die arabische Sprache. Tafsīr nach bloßer Meinung ohne Wissen ist verboten.</p>
+      <p class="src">Ibn Taymiyya, Muqaddima fī Uṣūl at-Tafsīr. Tafsīr-Werke auf diesem Weg: aṭ-Ṭabarī, Ibn Kathīr, as-Saʿdī.</p>
+    </div>
+    <div class="card">
+      <div class="ar-q">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+      <p>„Der Beste von euch ist, wer den Quran lernt und lehrt.“ Die Sahaba lernten beim Propheten ﷺ, die Tābiʿūn bei den Sahaba. Gelernt wird bei Lehrern, nicht allein.</p>
+      <p class="src">al-Bukhārī 5027</p>
+    </div>
+
+    <h2 class="mh">Umsetzung heute</h2>
+    <div class="card">
+      <ol class="todo">
+        <li><b>Lernen:</b> eine kleine Portion (z.B. 10 Ayat). Verstehen mit as-Saʿdī, auswendig, eine Sache umsetzen. Erst dann weiter. <span class="src">→ Tab Lernen</span></li>
+        <li><b>Wird:</b> fortlaufend lesen, Khatm in höchstens 30 Tagen anstreben, nicht unter 3 Tagen. Langsam, Aya für Aya. <span class="src">→ Tab Wird</span></li>
+        <li><b>Reagieren:</b> bei Lob Allahs „subḥān Allāh“, bei Bitten bitten, bei Strafe Zuflucht suchen (Muslim 772).</li>
+        <li><b>Wiederholen:</b> jeden Tag die letzten Portionen, und das Gelernte im Gebet lesen, besonders nachts (Muslim 789).</li>
+        <li><b>Tajwīd beim Lehrer:</b> Aussprache bei einem qualifizierten Lehrer prüfen lassen (al-Bukhārī 5027).</li>
+        <li><b>Keine eigene Auslegung:</b> Bedeutung aus Tafsīr der Ahl as-Sunna nehmen, Fragen an Gelehrte (an-Naḥl 16:43).</li>
+      </ol>
+    </div>
+
+    <details class="card">
+      <summary>Nicht aufgenommen (Isnād schwach oder nicht geprüft)</summary>
+      <ul class="hint">
+        <li>„Haltet an seinen Wundern inne, bewegt damit die Herzen …“ (Ibn Masʿūd zugeschrieben): Muṣannaf Ibn Abī Shayba 8973, Isnād sehr schwach und unterbrochen (ʿĪsā matrūk, ash-Shaʿbī hörte nicht von Ibn Masʿūd). <a href="https://en.tohed.com/hadith/musannaf-ibn-abi-shaybah/8973/" target="_blank" rel="noopener">Quelle</a></li>
+        <li>„ʿUmar lernte al-Baqara in zwölf Jahren“: oft zitiert, Isnād hier nicht geprüft.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="tab-learn">
   <div class="athar">
     <div class="ar">كانوا إذا تعلّموا من النبي ﷺ عشر آيات لم يجاوزوها حتى يعلموا ما فيها من العلم والعمل، قالوا: فتعلّمنا القرآن والعلم والعمل جميعًا</div>
     Abu ʿAbd ar-Raḥmān as-Sulamī über die Sahaba (Ibn Masʿūd u.a.): Sie lernten zehn Ayat und gingen nicht weiter, bis sie das Wissen und das Handeln darin gelernt hatten. Darum: erst lesen, verstehen, auswendig, umsetzen. Dann weiter.
@@ -89,6 +224,7 @@ a{color:var(--accent)}
     <summary>Wiederholung (Murājaʿa) der letzten Portionen</summary>
     <div id="review"></div>
   </details>
+  </section>
 
   <details class="card">
     <summary>Einstellungen</summary>
@@ -102,6 +238,15 @@ a{color:var(--accent)}
         </select></label>
       <label>Wiederholungen bis „sitzt“<br><input type="number" id="set-reps" min="1" max="50"></label>
       <label>Position (Surah:Aya)<br><input id="set-pos" placeholder="2:1"></label>
+      <label>Wird: Khatm in<br>
+        <select id="set-wird">
+          <option value="30">30 Tagen (1 Juzʾ/Tag)</option>
+          <option value="20">20 Tagen</option>
+          <option value="15">15 Tagen</option>
+          <option value="10">10 Tagen</option>
+          <option value="7">7 Tagen</option>
+        </select></label>
+      <label>Wird-Seite (1–604)<br><input type="number" id="set-wird-page" min="1" max="604"></label>
     </div>
     <div class="row">
       <button class="btn primary" id="set-save">Speichern</button>
@@ -127,6 +272,7 @@ function load(){
   return { pos:{s:1,a:1}, n:10, reps:10, reciter:'Husary_128kbps', current:null, log:[], cache:{} };
 }
 let st = load();
+st.wird = st.wird || { page:1, days:30, log:[] };
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){ alert('Speichern fehlgeschlagen: '+e.message); } }
 
 const today = () => new Date().toISOString().slice(0,10);
@@ -136,10 +282,18 @@ const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','
 const stripTags = h => (h||'').replace(/<\/p>|<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'').trim();
 
 // ---------- Daten ----------
-async function getJSON(url){
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(r.status+' '+url);
-  return r.json();
+// alquran.cloud erlaubt ~12 Anfragen/Sekunde; bei Ablehnung kurz warten und erneut versuchen
+async function getJSON(url, tries = 4){
+  for (let i = 0; ; i++) {
+    try {
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(r.status+' '+url);
+      return await r.json();
+    } catch(e) {
+      if (i >= tries - 1) throw e;
+      await new Promise(res => setTimeout(res, 1200 * (i + 1)));
+    }
+  }
 }
 
 async function fetchPortion(s, a, n){
@@ -369,8 +523,66 @@ function renderReview(){
     </li>`).join('')}</ul>`;
 }
 
+// ---------- Tabs ----------
+let tab = 'learn';
+document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => {
+  tab = b.dataset.tab;
+  document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('active', x === b));
+  ['learn','wird','manhaj'].forEach(t => document.getElementById('tab-'+t).hidden = t !== tab);
+  stopAudio();
+  if (tab === 'wird') renderWird();
+  window.scrollTo({top:0});
+});
+
+// ---------- Wird (fortlaufendes Lesen, 604 Seiten Madīnah-Mushaf) ----------
+const PAGES = 604;
+const wirdPerDay = () => Math.ceil(PAGES / st.wird.days);
+async function fetchPage(p){
+  const q = await getJSON(`https://api.alquran.cloud/v1/page/${p}/quran-uthmani`);
+  return q.data.ayahs;
+}
+async function renderWird(){
+  const w = st.wird, n = wirdPerDay();
+  const from = w.page, to = Math.min(PAGES, from + n - 1);
+  const doneToday = w.log.some(l => l.date === today());
+  document.getElementById('wird-head').innerHTML = `
+    <b>Heute:</b> Seiten ${from}–${to} von ${PAGES} · Khatm in ${w.days} Tagen
+    <div class="hint">${doneToday ? '✓ Heute schon ein Wird gelesen.' : 'Langsam lesen, Aya für Aya.'} Abgeschlossene Khatmāt: ${w.khatmat||0}</div>`;
+  const v = document.getElementById('wird-view');
+  v.innerHTML = '<div class="card">Lade Seiten …</div>';
+  try {
+    let html = '';
+    for (let p = from; p <= to; p++) {
+      const ayat = await fetchPage(p);
+      html += '<div class="card"><div class="page-ar">' + ayat.map(x => {
+        let text = x.text, head = '';
+        if (x.numberInSurah === 1) {
+          head = `<div class="surah-title">${x.surah.name}</div>`;
+          if (x.surah.number !== 1 && x.surah.number !== 9) {
+            text = text.split(/\s+/).slice(4).join(' ');
+            head += `<div class="basmala">${BASMALA}</div>`;
+          }
+        }
+        return `${head}${text} ${ayahNum(x.numberInSurah)}`;
+      }).join(' ') + `</div><div class="page-no">Seite ${p}</div></div>`;
+    }
+    v.innerHTML = html + `<div class="card"><button class="btn primary" onclick="finishWird(${to})">Wird gelesen – weiter ab Seite ${to === PAGES ? 1 : to + 1}</button></div>`;
+  } catch(e){
+    v.innerHTML = `<div class="card">Konnte Seiten nicht laden (Internet?).<br><span class="hint">${esc(e.message)}</span></div>`;
+  }
+}
+function finishWird(to){
+  const w = st.wird;
+  w.log.push({date:today(), from:w.page, to});
+  if (w.log.length > 400) w.log = w.log.slice(-400);
+  if (to >= PAGES) { w.page = 1; w.khatmat = (w.khatmat||0) + 1; } else w.page = to + 1;
+  save(); renderWird(); window.scrollTo({top:0, behavior:'smooth'});
+}
+
 // ---------- Einstellungen ----------
 function fillSettings(){
+  document.getElementById('set-wird').value = st.wird.days;
+  document.getElementById('set-wird-page').value = st.wird.page;
   document.getElementById('set-n').value = st.n;
   document.getElementById('set-reps').value = st.reps;
   document.getElementById('set-reciter').value = st.reciter;
@@ -380,6 +592,9 @@ document.getElementById('set-save').onclick = () => {
   st.n = Math.max(1, Math.min(40, +document.getElementById('set-n').value || 10));
   st.reps = Math.max(1, +document.getElementById('set-reps').value || 10);
   st.reciter = document.getElementById('set-reciter').value;
+  st.wird.days = +document.getElementById('set-wird').value || 30;
+  st.wird.page = Math.max(1, Math.min(PAGES, +document.getElementById('set-wird-page').value || st.wird.page));
+  if (tab === 'wird') renderWird();
   const m = document.getElementById('set-pos').value.match(/^(\d+):(\d+)$/);
   if (m) {
     const np = {s:+m[1], a:+m[2]};
@@ -393,7 +608,7 @@ document.getElementById('export').onclick = () => {
 };
 document.getElementById('import').onchange = async e => {
   const f = e.target.files[0]; if (!f) return;
-  try { st = {...load(), ...JSON.parse(await f.text())}; st.cache = st.cache || {}; save(); init(); }
+  try { st = {...load(), ...JSON.parse(await f.text())}; st.cache = st.cache || {}; st.wird = st.wird || { page:1, days:30, log:[] }; save(); init(); }
   catch(err){ alert('Import fehlgeschlagen: '+err.message); }
 };
 
