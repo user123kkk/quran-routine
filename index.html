@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,10 +37,13 @@ h1{font-size:22px;margin:0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0}
 .ayah-ar{font-family:"Amiri Quran",Amiri,serif;font-size:32px;line-height:2.3;direction:rtl;text-align:right}
 .num{display:inline-block;font-family:Amiri,serif;font-size:20px;color:var(--accent);margin:0 6px}
-.de{color:var(--muted);margin-top:8px}
+.tr{color:var(--muted);margin-top:8px}
 .tafsir{font-family:Amiri,serif;font-size:21px;line-height:2;direction:rtl;text-align:right;border-top:1px dashed var(--line);margin-top:12px;padding-top:12px}
+.tafsir-en{border-top:1px dashed var(--line);margin-top:12px;padding-top:12px;line-height:1.7}
+.tafsir-en h4{margin:10px 0 4px;font-size:15px;color:var(--accent)}
+.tafsir-en .ar-inline{font-family:Amiri,serif;font-size:20px;direction:rtl;text-align:right}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.btn{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer;font:inherit;font-size:14px}
+.btn{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer;font:inherit;font-size:14px;text-decoration:none;display:inline-block}
 .btn.primary{background:var(--accent);color:var(--card);border-color:var(--accent)}
 .btn.on{background:var(--accent-soft);border-color:var(--accent)}
 .hidden-text{filter:blur(9px);user-select:none;transition:filter .2s}
@@ -88,15 +91,15 @@ ol.todo li{margin:8px 0}
   </header>
 
   <nav class="tabs" id="tabs">
-    <button data-tab="learn" class="active">Lernen</button>
+    <button data-tab="learn" class="active">Learn</button>
     <button data-tab="wird">Wird</button>
     <button data-tab="manhaj">Manhaj</button>
   </nav>
 
   <section id="tab-wird" hidden>
     <div class="card">
-      <b>Täglicher Wird – Khatm</b>
-      <p class="hint" style="margin:6px 0 0">Neben dem Lernen der 10 Ayat: fortlaufendes Lesen des ganzen Quran. ʿAbdullāh ibn ʿAmr wurde gesagt: „Lies den Quran in einem Monat“, dann bis zu sieben Tagen, „und nicht mehr als das“ (al-Bukhārī 5054, Muslim 1159). Tempo unter Einstellungen.</p>
+      <b>Daily Wird – completing the Quran</b>
+      <p class="hint" style="margin:6px 0 0">Alongside learning the 10 ayat: continuous reading of the whole Quran. ʿAbdullāh ibn ʿAmr was told: “Recite the Quran in a month,” then down to seven days, “and do not do it in less than that” (al-Bukhārī 5054, Muslim 1159). Set your pace under Settings.</p>
     </div>
     <div class="card" id="wird-head"></div>
     <div id="wird-view"></div>
@@ -104,107 +107,107 @@ ol.todo li{margin:8px 0}
 
   <section id="tab-manhaj" hidden>
     <div class="card">
-      <b>Wie die Salaf den Quran lasen</b>
-      <p class="hint" style="margin:6px 0 0">Nur Belege mit geprüfter Quelle. Quran, Ṣaḥīḥayn, und Überlieferungen mit Urteil eines Ḥadīth-Gelehrten. Keine eigene Meinung.</p>
+      <b>How the Salaf recited the Quran</b>
+      <p class="hint" style="margin:6px 0 0">Only evidence with a checked source: the Quran, the two Ṣaḥīḥs, and reports graded by a scholar of ḥadīth. No personal opinion.</p>
     </div>
 
-    <h2 class="mh">1 · Lernen: Wissen und Handeln zusammen</h2>
+    <h2 class="mh">1 · Learning: knowledge and action together</h2>
     <div class="card">
       <div class="ar-q">كانوا يقترئون من رسول الله ﷺ عشر آيات، فلا يأخذون في العشر الأخرى حتى يعلموا ما في هذه من العلم والعمل، قالوا: فعلمنا العلم والعمل</div>
-      <p>Abū ʿAbd ar-Raḥmān as-Sulamī über die Sahaba, die ihm den Quran beibrachten (u.a. ʿUthmān, Ibn Masʿūd): Zehn Ayat, und erst weiter, wenn Wissen und Handeln darin gelernt waren.</p>
-      <p class="src">Aḥmad, aṭ-Ṭabarī (Muqaddima des Tafsīr), aṭ-Ṭaḥāwī (Mushkil al-Āthār 4/83) · Shuʿayb al-Arnaʾūṭ: Isnād stark. <a href="https://dorar.net/h/ea25PlEx" target="_blank" rel="noopener">dorar.net</a></p>
+      <p>Abū ʿAbd ar-Raḥmān as-Sulamī about the Companions who taught him the Quran (among them ʿUthmān and Ibn Masʿūd): they took ten ayat and did not move on until they had learned the knowledge and the action in them.</p>
+      <p class="src">Aḥmad, aṭ-Ṭabarī (introduction to his Tafsīr), aṭ-Ṭaḥāwī (Mushkil al-Āthār 4/83) · Shuʿayb al-Arnaʾūṭ: chain strong. <a href="https://dorar.net/h/ea25PlEx" target="_blank" rel="noopener">dorar.net</a></p>
     </div>
     <div class="card">
       <div class="ar-q">كَانَ خُلُقُهُ الْقُرْآنَ</div>
-      <p>ʿĀʾisha über den Propheten ﷺ: „Sein Charakter war der Quran.“ Das Ziel des Lesens ist das Handeln.</p>
+      <p>ʿĀʾisha about the Prophet ﷺ: “His character was the Quran.” The goal of reading is acting on it.</p>
       <p class="src">Muslim 746</p>
     </div>
     <div class="card">
       <div class="ar-q">كِتَٰبٌ أَنزَلْنَٰهُ إِلَيْكَ مُبَٰرَكٌ لِّيَدَّبَّرُوٓا۟ ءَايَٰتِهِۦ وَلِيَتَذَكَّرَ أُو۟لُوا۟ ٱلْأَلْبَٰبِ</div>
-      <p>„Ein gesegnetes Buch, damit sie über seine Ayat nachdenken und damit die Verständigen bedenken.“ Siehe auch 47:24: „Denken sie nicht über den Quran nach, oder sind an ihren Herzen Schlösser?“</p>
+      <p>“A blessed Book which We have revealed to you, that they might reflect upon its verses and that those of understanding would be reminded.” See also 47:24: “Then do they not reflect upon the Quran, or are there locks upon their hearts?”</p>
       <p class="src">Ṣād 38:29 · Muḥammad 47:24</p>
     </div>
 
-    <h2 class="mh">2 · Lesen: langsam, Aya für Aya, mit Reaktion</h2>
+    <h2 class="mh">2 · Reciting: slowly, ayah by ayah, responding</h2>
     <div class="card">
       <div class="ar-q">وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا</div>
-      <p>„Und trage den Quran langsam und deutlich vor.“</p>
+      <p>“And recite the Quran with measured recitation.”</p>
       <p class="src">al-Muzzammil 73:4</p>
     </div>
     <div class="card">
-      <p>Anas wurde nach der Rezitation des Propheten ﷺ gefragt: „Sie war gedehnt.“ Er las die Basmala und dehnte jedes Wort.</p>
+      <p>Anas was asked about the recitation of the Prophet ﷺ. He said: “It was drawn out.” He recited the basmala, prolonging each word.</p>
       <p class="src">al-Bukhārī 5046</p>
     </div>
     <div class="card">
-      <p>Umm Salama: Er ﷺ unterbrach seine Rezitation Aya für Aya: „al-ḥamdu lillāhi rabbi l-ʿālamīn“, dann hielt er an; „ar-raḥmāni r-raḥīm“, dann hielt er an.</p>
+      <p>Umm Salama: he ﷺ would break up his recitation ayah by ayah: “al-ḥamdu lillāhi rabbi l-ʿālamīn”, then stop; “ar-raḥmāni r-raḥīm”, then stop.</p>
       <p class="src">Abū Dāwūd 4001, at-Tirmidhī 2927 · al-Albānī: ṣaḥīḥ</p>
     </div>
     <div class="card">
-      <p>Ein Mann sagte zu Ibn Masʿūd, er habe in einer Rakʿa alle Mufaṣṣal-Suren gelesen. Ibn Masʿūd: „Ein Hasten wie das Hasten von Gedichten?“ Hastiges Herunterlesen ist getadelt.</p>
+      <p>A man told Ibn Masʿūd he had recited all of the Mufaṣṣal in one rakʿa. Ibn Masʿūd said: “Rushing like the rushing of poetry?” Hasty reading is censured.</p>
       <p class="src">al-Bukhārī 775, Muslim 822</p>
     </div>
     <div class="card">
-      <p>Ḥudhayfa betete nachts mit dem Propheten ﷺ: Er las langsam. Kam eine Aya mit Lobpreis, pries er Allah. Kam eine Bitte, bat er. Kam Zufluchtnahme, nahm er Zuflucht.</p>
+      <p>Ḥudhayfa prayed at night with the Prophet ﷺ. He recited slowly. When he passed an ayah of glorification, he glorified Allah. When he passed a supplication, he asked. When he passed a mention of seeking refuge, he sought refuge.</p>
       <p class="src">Muslim 772</p>
     </div>
     <div class="card">
-      <p>Ibn Masʿūd las dem Propheten ﷺ Sūrat an-Nisāʾ vor. Bei Aya 41 sagte er: „Genug.“ Seine Augen flossen über vor Tränen.</p>
+      <p>Ibn Masʿūd recited Sūrat an-Nisāʾ to the Prophet ﷺ. At ayah 41 he said: “Enough.” His eyes were overflowing with tears.</p>
       <p class="src">al-Bukhārī 5050, Muslim 800</p>
     </div>
 
-    <h2 class="mh">3 · Menge: Khatm nicht unter drei Tagen</h2>
+    <h2 class="mh">3 · Amount: no completion in under three days</h2>
     <div class="card">
-      <p>Zu ʿAbdullāh ibn ʿAmr: „Lies den Quran in einem Monat.“ Er bat um mehr, bis: „Dann lies ihn in sieben, und nicht mehr als das.“</p>
+      <p>To ʿAbdullāh ibn ʿAmr: “Recite the Quran in a month.” He asked for more, until: “Then recite it in seven, and do not do it in less than that.”</p>
       <p class="src">al-Bukhārī 5054, Muslim 1159</p>
     </div>
     <div class="card">
       <div class="ar-q">لَمْ يَفْقَهْ مَنْ قَرَأَ الْقُرْآنَ فِي أَقَلَّ مِنْ ثَلَاثٍ</div>
-      <p>„Wer den Quran in weniger als drei Tagen liest, hat ihn nicht verstanden.“</p>
+      <p>“Whoever recites the Quran in less than three days has not understood it.”</p>
       <p class="src">Abū Dāwūd 1394, at-Tirmidhī 2949 · al-Albānī: ṣaḥīḥ</p>
     </div>
 
-    <h2 class="mh">4 · Bewahren: wiederholen und im Gebet lesen</h2>
+    <h2 class="mh">4 · Preserving: review and recite in prayer</h2>
     <div class="card">
-      <p>„Pflegt diesen Quran. Bei Dem, in Dessen Hand Muḥammads Seele ist, er entwischt schneller als Kamele aus ihren Fesseln.“</p>
+      <p>“Keep refreshing this Quran. By the One in Whose hand is the soul of Muḥammad, it escapes faster than camels from their hobbles.”</p>
       <p class="src">al-Bukhārī 5033, Muslim 791</p>
     </div>
     <div class="card">
-      <p>„Der Träger des Quran ist wie der Besitzer gefesselter Kamele: Pflegt er sie, hält er sie.“ Bei Muslim: „Steht er auf und liest ihn nachts und tags, behält er ihn.“</p>
+      <p>“The companion of the Quran is like the owner of hobbled camels: if he keeps watch over them, he holds them.” In Muslim: “If he stands and recites it night and day, he remembers it.”</p>
       <p class="src">al-Bukhārī 5031, Muslim 789</p>
     </div>
     <div class="card">
-      <p>Jibrīl ging mit dem Propheten ﷺ jedes Jahr im Ramaḍān den Quran durch, im Todesjahr zweimal.</p>
+      <p>Jibrīl reviewed the Quran with the Prophet ﷺ every year in Ramaḍān, and twice in the year he died.</p>
       <p class="src">al-Bukhārī 4998</p>
     </div>
 
-    <h2 class="mh">5 · Verstehen: Tafsīr nach dem Weg der Salaf</h2>
+    <h2 class="mh">5 · Understanding: tafsīr on the way of the Salaf</h2>
     <div class="card">
-      <p>Reihenfolge der Erklärung: Quran durch Quran, dann durch die Sunna, dann durch die Aussagen der Sahaba, dann der Tābiʿūn, dann die arabische Sprache. Tafsīr nach bloßer Meinung ohne Wissen ist verboten.</p>
-      <p class="src">Ibn Taymiyya, Muqaddima fī Uṣūl at-Tafsīr. Tafsīr-Werke auf diesem Weg: aṭ-Ṭabarī, Ibn Kathīr, as-Saʿdī.</p>
+      <p>Order of explanation: the Quran by the Quran, then by the Sunnah, then by the statements of the Companions, then of the Tābiʿūn, then by the Arabic language. Tafsīr by mere opinion without knowledge is forbidden.</p>
+      <p class="src">Ibn Taymiyya, Muqaddima fī Uṣūl at-Tafsīr. Tafsīr works on this way: aṭ-Ṭabarī, Ibn Kathīr, as-Saʿdī.</p>
     </div>
     <div class="card">
       <div class="ar-q">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
-      <p>„Der Beste von euch ist, wer den Quran lernt und lehrt.“ Die Sahaba lernten beim Propheten ﷺ, die Tābiʿūn bei den Sahaba. Gelernt wird bei Lehrern, nicht allein.</p>
+      <p>“The best of you are those who learn the Quran and teach it.” The Companions learned from the Prophet ﷺ, the Tābiʿūn from the Companions. The Quran is learned from teachers, not alone.</p>
       <p class="src">al-Bukhārī 5027</p>
     </div>
 
-    <h2 class="mh">Umsetzung heute</h2>
+    <h2 class="mh">Applying it today</h2>
     <div class="card">
       <ol class="todo">
-        <li><b>Lernen:</b> eine kleine Portion (z.B. 10 Ayat). Verstehen mit as-Saʿdī, auswendig, eine Sache umsetzen. Erst dann weiter. <span class="src">→ Tab Lernen</span></li>
-        <li><b>Wird:</b> fortlaufend lesen, Khatm in höchstens 30 Tagen anstreben, nicht unter 3 Tagen. Langsam, Aya für Aya. <span class="src">→ Tab Wird</span></li>
-        <li><b>Reagieren:</b> bei Lob Allahs „subḥān Allāh“, bei Bitten bitten, bei Strafe Zuflucht suchen (Muslim 772).</li>
-        <li><b>Wiederholen:</b> jeden Tag die letzten Portionen, und das Gelernte im Gebet lesen, besonders nachts (Muslim 789).</li>
-        <li><b>Tajwīd beim Lehrer:</b> Aussprache bei einem qualifizierten Lehrer prüfen lassen (al-Bukhārī 5027).</li>
-        <li><b>Keine eigene Auslegung:</b> Bedeutung aus Tafsīr der Ahl as-Sunna nehmen, Fragen an Gelehrte (an-Naḥl 16:43).</li>
+        <li><b>Learn:</b> a small portion (e.g. 10 ayat). Understand it with as-Saʿdī, memorize it, act on one thing. Only then move on. <span class="src">→ Learn tab</span></li>
+        <li><b>Wird:</b> read continuously, aim to complete the Quran in at most 30 days, never in under 3 days. Slowly, ayah by ayah. <span class="src">→ Wird tab</span></li>
+        <li><b>Respond:</b> at praise of Allah say “subḥān Allāh”, at a supplication ask, at punishment seek refuge (Muslim 772).</li>
+        <li><b>Review:</b> every day the last portions, and recite what you learned in prayer, especially at night (Muslim 789).</li>
+        <li><b>Tajwīd with a teacher:</b> have your recitation checked by a qualified teacher (al-Bukhārī 5027).</li>
+        <li><b>No personal interpretation:</b> take the meaning from the tafsīr of Ahl as-Sunnah, ask the scholars (an-Naḥl 16:43).</li>
       </ol>
     </div>
 
     <details class="card">
-      <summary>Nicht aufgenommen (Isnād schwach oder nicht geprüft)</summary>
+      <summary>Left out (weak or unchecked chain)</summary>
       <ul class="hint">
-        <li>„Haltet an seinen Wundern inne, bewegt damit die Herzen …“ (Ibn Masʿūd zugeschrieben): Muṣannaf Ibn Abī Shayba 8973, Isnād sehr schwach und unterbrochen (ʿĪsā matrūk, ash-Shaʿbī hörte nicht von Ibn Masʿūd). <a href="https://en.tohed.com/hadith/musannaf-ibn-abi-shaybah/8973/" target="_blank" rel="noopener">Quelle</a></li>
-        <li>„ʿUmar lernte al-Baqara in zwölf Jahren“: oft zitiert, Isnād hier nicht geprüft.</li>
+        <li>“Stop at its wonders, move the hearts with it …” (attributed to Ibn Masʿūd): Muṣannaf Ibn Abī Shayba 8973, chain very weak and broken (ʿĪsā is matrūk, ash-Shaʿbī did not hear from Ibn Masʿūd). <a href="https://en.tohed.com/hadith/musannaf-ibn-abi-shaybah/8973/" target="_blank" rel="noopener">Source</a></li>
+        <li>“ʿUmar learned al-Baqara in twelve years”: often quoted, chain not checked here.</li>
       </ul>
     </details>
   </section>
@@ -212,7 +215,7 @@ ol.todo li{margin:8px 0}
   <section id="tab-learn">
   <div class="athar">
     <div class="ar">كانوا إذا تعلّموا من النبي ﷺ عشر آيات لم يجاوزوها حتى يعلموا ما فيها من العلم والعمل، قالوا: فتعلّمنا القرآن والعلم والعمل جميعًا</div>
-    Abu ʿAbd ar-Raḥmān as-Sulamī über die Sahaba (Ibn Masʿūd u.a.): Sie lernten zehn Ayat und gingen nicht weiter, bis sie das Wissen und das Handeln darin gelernt hatten. Darum: erst lesen, verstehen, auswendig, umsetzen. Dann weiter.
+    Abū ʿAbd ar-Raḥmān as-Sulamī about the Companions (Ibn Masʿūd and others): they learned ten ayat and did not go beyond them until they had learned the knowledge and the action in them. So: read, understand, memorize, act. Then move on.
   </div>
 
   <div class="card" id="today-head"></div>
@@ -221,51 +224,54 @@ ol.todo li{margin:8px 0}
   <div id="view"></div>
 
   <details class="card" id="review-box">
-    <summary>Wiederholung (Murājaʿa) der letzten Portionen</summary>
+    <summary>Review (Murājaʿa) of recent portions</summary>
     <div id="review"></div>
   </details>
   </section>
 
   <details class="card">
-    <summary>Einstellungen</summary>
+    <summary>Settings</summary>
     <div class="grid" style="margin-top:12px">
-      <label>Ayat pro Tag<br><input type="number" id="set-n" min="1" max="40"></label>
-      <label>Rezitator<br>
+      <label>Ayat per day<br><input type="number" id="set-n" min="1" max="40"></label>
+      <label>Reciter<br>
         <select id="set-reciter">
-          <option value="Husary_128kbps">al-Ḥuṣarī (langsam, gut zum Lernen)</option>
+          <option value="Husary_128kbps">al-Ḥuṣarī (slow, good for memorizing)</option>
           <option value="Minshawy_Murattal_128kbps">al-Minshāwī</option>
           <option value="Alafasy_128kbps">Mishārī al-ʿAfāsī</option>
         </select></label>
-      <label>Wiederholungen bis „sitzt“<br><input type="number" id="set-reps" min="1" max="50"></label>
-      <label>Position (Surah:Aya)<br><input id="set-pos" placeholder="2:1"></label>
-      <label>Wird: Khatm in<br>
+      <label>Repetitions until memorized<br><input type="number" id="set-reps" min="1" max="50"></label>
+      <label>Position (Surah:Ayah)<br><input id="set-pos" placeholder="2:1"></label>
+      <label>Wird: complete in<br>
         <select id="set-wird">
-          <option value="30">30 Tagen (1 Juzʾ/Tag)</option>
-          <option value="20">20 Tagen</option>
-          <option value="15">15 Tagen</option>
-          <option value="10">10 Tagen</option>
-          <option value="7">7 Tagen</option>
+          <option value="30">30 days (1 juzʾ/day)</option>
+          <option value="20">20 days</option>
+          <option value="15">15 days</option>
+          <option value="10">10 days</option>
+          <option value="7">7 days</option>
         </select></label>
-      <label>Wird-Seite (1–604)<br><input type="number" id="set-wird-page" min="1" max="604"></label>
+      <label>Wird page (1–604)<br><input type="number" id="set-wird-page" min="1" max="604"></label>
     </div>
     <div class="row">
-      <button class="btn primary" id="set-save">Speichern</button>
-      <button class="btn" id="export">Backup exportieren</button>
-      <label class="btn">Backup importieren<input type="file" id="import" accept=".json" hidden></label>
+      <button class="btn primary" id="set-save">Save</button>
+      <button class="btn" id="export">Export backup</button>
+      <label class="btn">Import backup<input type="file" id="import" accept=".json" hidden></label>
+      <label class="btn">Import as-Sa'di (English)<input type="file" id="import-sadi" accept=".json,application/json" hidden></label>
     </div>
-    <p class="hint">Alles bleibt lokal in diesem Browser. Position ändern setzt die heutige Portion neu.</p>
+    <p class="hint" id="sadi-status"></p>
+    <p class="hint">Everything stays in this browser only. Changing the position resets today's portion.</p>
   </details>
 </div>
 
 <script>
 const KEY = 'quranRoutine.v1';
 const STEPS = [
-  {id:'read', name:'1 · Lesen'},
-  {id:'understand', name:'2 · Verstehen'},
-  {id:'memorize', name:'3 · Auswendig'},
-  {id:'act', name:'4 · Anwenden'},
+  {id:'read', name:'1 · Read'},
+  {id:'understand', name:'2 · Understand'},
+  {id:'memorize', name:'3 · Memorize'},
+  {id:'act', name:'4 · Act'},
 ];
 const BASMALA = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
+const SADI_EN = 'https://www.kalamullah.com/tafseer-as-sadi.html';
 
 function load(){
   try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) return s; } catch(e){}
@@ -273,16 +279,52 @@ function load(){
 }
 let st = load();
 st.wird = st.wird || { page:1, days:30, log:[] };
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){ alert('Speichern fehlgeschlagen: '+e.message); } }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){ alert('Could not save: '+e.message); } }
 
 const today = () => new Date().toISOString().slice(0,10);
 const pad = (n,l=3) => String(n).padStart(l,'0');
 const arNum = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const stripTags = h => (h||'').replace(/<\/p>|<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'').trim();
+const stripTags = h => (h||'').replace(/<\/p>|<\/h\d>|<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'').trim();
+// ---------- as-Saʿdī in English (private file the user imports, kept in IndexedDB on this device) ----------
+// The file maps "surah:ayah" to the text from that ayah's translation up to the next ayah,
+// so the last ayah of a passage carries the commentary. Al-Fātiḥa is stored whole under "1:1".
+let sadiEn = null;
+function idb(){
+  return new Promise((res, rej) => {
+    const r = indexedDB.open('quranRoutine', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('files');
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+  });
+}
+async function idbGet(k){ const db = await idb(); return new Promise(res => { const q = db.transaction('files').objectStore('files').get(k); q.onsuccess = () => res(q.result); q.onerror = () => res(null); }); }
+async function idbPut(k, v){ const db = await idb(); return new Promise((res, rej) => { const t = db.transaction('files','readwrite'); t.objectStore('files').put(v, k); t.oncomplete = res; t.onerror = () => rej(t.error); }); }
+async function loadSadiEn(){ try { sadiEn = await idbGet('sadi-en') || null; } catch(e){ sadiEn = null; } }
 
-// ---------- Daten ----------
-// alquran.cloud erlaubt ~12 Anfragen/Sekunde; bei Ablehnung kurz warten und erneut versuchen
+// Segments for a portion: each ayah's own segment, then onward until the passage's commentary is reached
+function sadiSegments(s, from, to){
+  if (!sadiEn) return null;
+  if (s === 1) return sadiEn['1:1'] ? [['1', sadiEn['1:1']]] : [];
+  const seen = new Set(), out = [];
+  const add = a => { const t = sadiEn[`${s}:${a}`]; if (t && !seen.has(t)) { seen.add(t); out.push([`${s}:${a}`, t]); } return t; };
+  // an ayah missing in the file is explained inside the previous ayah's segment
+  if (!sadiEn[`${s}:${from}`]) for (let a = from - 1; a >= 1; a--) if (add(a)) break;
+  let last = '';
+  for (let a = from; a <= to; a++) last = add(a) || last;
+  for (let a = to + 1, k = 0; last.length < 600 && k < 20 && sadiEn[`${s}:${a}`]; a++, k++) last = add(a);
+  return out;
+}
+function formatSadi(t){
+  // the scan renders the ornate Quran brackets as "^" (open, sometimes also close) and ")?" / ")*" (close)
+  return t.split(/\n{2,}/).map(p => {
+    let open = false;
+    const q = esc(p).replace(/\^|\)[*?](?=[\s.,;:]|$)/g, m => { const r = (m === '^' && !open) ? '«' : '»'; open = r === '«'; return r; });
+    return `<p>${q}</p>`;
+  }).join('');
+}
+
+// ---------- Data ----------
+// alquran.cloud allows ~12 requests/second; on refusal wait briefly and retry
 async function getJSON(url, tries = 4){
   for (let i = 0; ; i++) {
     try {
@@ -297,27 +339,22 @@ async function getJSON(url, tries = 4){
 }
 
 async function fetchPortion(s, a, n){
-  const key = `${s}:${a}:${n}`;
+  const key = `en:${s}:${a}:${n}`;
   if (st.cache[key]) return st.cache[key];
-  const q = await getJSON(`https://api.alquran.cloud/v1/surah/${s}/editions/quran-uthmani,de.bubenheim?offset=${a-1}&limit=${n}`);
-  const [ar, de] = q.data;
+  const q = await getJSON(`https://api.alquran.cloud/v1/surah/${s}/editions/quran-uthmani,en.sahih?offset=${a-1}&limit=${n}`);
+  const [ar, en] = q.data;
   const ayat = ar.ayahs.map((x,i) => {
     let text = x.text;
-    // Basmala steht in Aya 1 jeder Surah (außer 1 und 9) mit im Text – wird separat angezeigt
+    // The basmala is part of ayah 1 of every surah (except 1 and 9); it is shown separately
     if (x.numberInSurah === 1 && s !== 1 && s !== 9) text = text.split(/\s+/).slice(4).join(' ');
-    return { n:x.numberInSurah, ar:text, de:de.ayahs[i].text, tafsir:'' };
+    return { n:x.numberInSurah, juz:x.juz, ar:text, en:en.ayahs[i].text, tafsir:'', tafsirEn:'' };
   });
-  // Tafsir as-Saʿdī (arabisch) – quran.com Ressource 91
+  // Arabic original of as-Saʿdī (quran.com 91)
   await Promise.all(ayat.map(async y => {
-    try {
-      const t = await getJSON(`https://api.quran.com/api/v4/tafsirs/91/by_ayah/${s}:${y.n}`);
-      const verses = Object.keys(t.tafsir.verses || {});
-      y.tafsir = stripTags(t.tafsir.text);
-      y.group = verses.length > 1 ? verses : null;
-    } catch(e){ y.tafsir = ''; }
+    try { y.tafsir = stripTags((await getJSON(`https://api.quran.com/api/v4/tafsirs/91/by_ayah/${s}:${y.n}`)).tafsir.text); } catch(e){}
   }));
   const portion = { s, a, n:ayat.length, surahName:ar.englishName, surahAr:ar.name, total:ar.numberOfAyahs, ayat };
-  // Cache klein halten: nur letzte 30 Portionen
+  // Keep the cache small: last 30 portions only
   const keys = Object.keys(st.cache); if (keys.length > 30) delete st.cache[keys[0]];
   st.cache[key] = portion; save();
   return portion;
@@ -346,7 +383,7 @@ function next(){
 }
 function stopAudio(){ queue = []; audio.pause(); }
 
-// ---------- Ansicht ----------
+// ---------- View ----------
 let portion = null, step = 'read';
 
 function streak(){
@@ -360,13 +397,13 @@ function streak(){
 function renderHead(){
   const c = st.current, p = portion;
   document.getElementById('meta').textContent =
-    `Serie: ${streak()} Tage · abgeschlossen: ${st.log.length} Portionen`;
+    `Streak: ${streak()} days · completed: ${st.log.length} portions`;
   const doneToday = st.log.some(l => l.date === today());
   document.getElementById('today-head').innerHTML = p ? `
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
-      <div><b>Heute:</b> Surah ${p.s} ${esc(p.surahName)} <span style="font-family:Amiri">${p.surahAr}</span>, Ayat ${p.a}–${p.a+p.n-1}</div>
-      <div class="hint">${doneToday ? '✓ Heute schon eine Portion abgeschlossen – das hier ist Bonus.' : 'begonnen am '+c.started}</div>
-    </div>` : 'Lade …';
+      <div><b>Today:</b> Surah ${p.s} ${esc(p.surahName)} <span style="font-family:Amiri">${p.surahAr}</span>, ayat ${p.a}–${p.a+p.n-1}</div>
+      <div class="hint">${doneToday ? '✓ A portion is already done today – this one is extra.' : 'started '+c.started}</div>
+    </div>` : 'Loading …';
 }
 
 function renderSteps(){
@@ -377,7 +414,7 @@ function renderSteps(){
     b.textContent = s.name;
     if (c.steps[s.id]) b.classList.add('done');
     if (s.id === step) b.classList.add('active');
-    // nicht weiter, bevor der vorige Schritt abgeschlossen ist
+    // no moving on before the previous step is done
     if (i > 0 && !c.steps[STEPS[i-1].id]) b.disabled = true;
     b.onclick = () => { step = s.id; render(); };
     el.appendChild(b);
@@ -389,48 +426,60 @@ function basmalaIfNeeded(){
   const p = portion;
   return (p.a === 1 && p.s !== 1 && p.s !== 9) ? `<div class="basmala">${BASMALA}</div>` : '';
 }
+// IIPH English edition of Tafseer as-Saʿdī: 10 volumes, 3 ajzāʾ each
+function sadiVolume(juz){ const v = Math.ceil(juz / 3); return `Volume ${v} (Juzʾ ${v*3-2}–${v*3})`; }
 
 function viewRead(){
   const p = portion;
   return `
   <div class="card">
     <div class="row" style="margin-top:0">
-      <button class="btn" onclick="playList(portion.ayat.map(y=>[portion.s,y.n]))">▶ Alle anhören</button>
-      <button class="btn" onclick="stopAudio()">■ Stopp</button>
-      <span class="hint">Lies langsam mit, Blick auf jedes Wort.</span>
+      <button class="btn" onclick="playList(portion.ayat.map(y=>[portion.s,y.n]))">▶ Play all</button>
+      <button class="btn" onclick="stopAudio()">■ Stop</button>
+      <span class="hint">Read along slowly, eyes on every word.</span>
     </div>
   </div>
   ${basmalaIfNeeded()}
   ${p.ayat.map(y => `
     <div class="card">
       <div class="ayah-ar">${y.ar} ${ayahNum(y.n)}</div>
-      <div class="de">${y.n}. ${esc(y.de)}</div>
+      <div class="tr">${y.n}. ${esc(y.en)}</div>
       <div class="row"><button class="btn" onclick="playList([[${p.s},${y.n}]])">▶</button></div>
     </div>`).join('')}
-  ${doneBtn('read','Gelesen – weiter zu Verstehen')}`;
+  ${doneBtn('read','Read – continue to Understand')}`;
 }
 
 function viewUnderstand(){
   const p = portion;
+  const vols = [...new Set(p.ayat.map(y => sadiVolume(y.juz)))].join(' and ');
+  const segs = sadiSegments(p.s, p.a, p.a + p.n - 1);
+  const english = segs
+    ? `<div class="card">
+        <b>Tafseer as-Saʿdī</b> <span class="hint">· ${vols}</span>
+        ${segs.length ? segs.map(([k,t]) => `<div class="tafsir-en">${formatSadi(t)}</div>`).join('')
+                      : '<p class="hint">These ayat were not found in the imported file.</p>'}
+      </div>`
+    : `<div class="card">
+        <b>Tafseer as-Saʿdī in English</b>
+        <p class="hint">Import your file <b>sadi-en.json</b> once under Settings, then the English text from the 10 volumes shows here. Until then: ${vols}.</p>
+        <a class="btn" href="${SADI_EN}" target="_blank" rel="noopener">kalamullah.com</a>
+      </div>`;
   return `
-  <div class="card hint">
-    Tafsīr as-Saʿdī (Taysīr al-Karīm ar-Raḥmān) im arabischen Original. Englische Übersetzung als PDF:
-    <a href="https://www.kalamullah.com/tafseer-as-sadi.html" target="_blank" rel="noopener">kalamullah.com – Tafseer as-Sa'di</a>.
-    Saʿdī erklärt oft mehrere Ayat zusammen; dann steht die Erklärung bei der ersten Aya der Gruppe.
-  </div>
   ${p.ayat.map(y => `
     <div class="card">
       <div class="ayah-ar">${y.ar} ${ayahNum(y.n)}</div>
-      <div class="de">${y.n}. ${esc(y.de)}</div>
-      ${y.tafsir
-        ? `<div class="tafsir">${esc(y.tafsir).replace(/\n+/g,'<br><br>')}</div>`
-        : `<div class="hint" style="margin-top:10px">Erklärung steht bei einer vorherigen Aya dieser Gruppe.</div>`}
+      <div class="tr">${y.n}. ${esc(y.en)}</div>
     </div>`).join('')}
+  ${english}
+  <details class="card">
+    <summary>as-Saʿdī – Arabic original</summary>
+    ${p.ayat.filter(y => y.tafsir).map(y => `<div class="tafsir">${ayahNum(y.n)} ${esc(y.tafsir).replace(/\n+/g,'<br><br>')}</div>`).join('')}
+  </details>
   <div class="card">
-    <b>Wissen aus diesen Ayat</b> <span class="hint">(kurz in eigenen Worten: Worum geht es? Was lehrt Allah hier?)</span>
-    <textarea id="knowledge" placeholder="z.B. Aya 3: Merkmale der Muttaqīn – Glaube an das Verborgene, Gebet verrichten, ausgeben …">${esc(st.current.knowledge||'')}</textarea>
+    <b>Knowledge from these ayat</b> <span class="hint">(briefly in your own words: what is it about? What does Allah teach here?)</span>
+    <textarea id="knowledge" placeholder="e.g. Ayah 3: qualities of the muttaqīn – belief in the unseen, establishing prayer, spending …">${esc(st.current.knowledge||'')}</textarea>
   </div>
-  ${doneBtn('understand','Verstanden – weiter zum Auswendiglernen')}`;
+  ${doneBtn('understand','Understood – continue to Memorize')}`;
 }
 
 function viewMemorize(){
@@ -438,41 +487,41 @@ function viewMemorize(){
   const allOk = p.ayat.every(y => c.memo[y.n]);
   return `
   <div class="card hint">
-    Methode: Aya anhören und mitlesen, dann verdecken und aus dem Gedächtnis aufsagen. Jede Wiederholung zählen.
-    Danach die Aya mit der vorherigen verbinden. Ziel: ${st.reps}× fehlerfrei.
+    Method: listen to the ayah and read along, then hide it and recite from memory. Count every repetition.
+    Then join the ayah to the previous ones. Goal: ${st.reps}× without mistakes.
   </div>
   ${p.ayat.map(y => `
     <div class="card">
       <div class="ayah-ar ${c.memo['h'+y.n] ? 'hidden-text' : ''}" id="ar-${y.n}">${y.ar} ${ayahNum(y.n)}</div>
       <div class="row">
         <button class="btn" onclick="playList([[${p.s},${y.n}]])">▶ 1×</button>
-        <button class="btn" onclick="playList([[${p.s},${y.n}]],true)">🔁 Schleife</button>
+        <button class="btn" onclick="playList([[${p.s},${y.n}]],true)">🔁 Loop</button>
         <button class="btn" onclick="stopAudio()">■</button>
-        <button class="btn ${c.memo['h'+y.n]?'on':''}" onclick="toggleHide(${y.n})">${c.memo['h'+y.n] ? 'Aufdecken' : 'Verdecken'}</button>
+        <button class="btn ${c.memo['h'+y.n]?'on':''}" onclick="toggleHide(${y.n})">${c.memo['h'+y.n] ? 'Show' : 'Hide'}</button>
         <button class="btn" onclick="rep(${y.n},-1)">−</button>
         <span class="counter">${c.reps[y.n]||0} / ${st.reps}</span>
-        <button class="btn" onclick="rep(${y.n},1)">+1 aufgesagt</button>
-        <label class="chk"><input type="checkbox" ${c.memo[y.n]?'checked':''} onchange="setMemo(${y.n},this.checked)"> sitzt</label>
+        <button class="btn" onclick="rep(${y.n},1)">+1 recited</button>
+        <label class="chk"><input type="checkbox" ${c.memo[y.n]?'checked':''} onchange="setMemo(${y.n},this.checked)"> memorized</label>
       </div>
-      ${y.n > p.a ? `<div class="row"><button class="btn" onclick="playList(portion.ayat.filter(z=>z.n<=${y.n}).map(z=>[portion.s,z.n]))">▶ Verbinden: Ayat ${p.a}–${y.n}</button></div>` : ''}
+      ${y.n > p.a ? `<div class="row"><button class="btn" onclick="playList(portion.ayat.filter(z=>z.n<=${y.n}).map(z=>[portion.s,z.n]))">▶ Join: ayat ${p.a}–${y.n}</button></div>` : ''}
     </div>`).join('')}
-  ${allOk ? doneBtn('memorize','Alles sitzt – weiter zu Anwenden') : `<div class="card hint">Markiere jede Aya mit „sitzt“, dann geht es weiter.</div>`}`;
+  ${allOk ? doneBtn('memorize','All memorized – continue to Act') : `<div class="card hint">Mark every ayah as “memorized” to continue.</div>`}`;
 }
 
 function viewAct(){
   return `
   <div class="card">
-    <p style="margin-top:0">Die Sahaba lernten <i>das Handeln</i> in den Ayat, bevor sie weitergingen. Frag dich:</p>
+    <p style="margin-top:0">The Companions learned <i>the action</i> in the ayat before moving on. Ask yourself:</p>
     <ul class="hint">
-      <li>Welcher Befehl oder welches Verbot steckt hier drin?</li>
-      <li>Welche Eigenschaft liebt Allah hier – welche hasst Er?</li>
-      <li>Was ändere ich heute konkret (eine Sache, klein und machbar)?</li>
+      <li>Which command or prohibition is in here?</li>
+      <li>Which quality does Allah love here – which does He hate?</li>
+      <li>What will I change today, concretely (one small, doable thing)?</li>
     </ul>
-    <textarea id="notes" placeholder="Heute setze ich um: …">${esc(st.current.notes||'')}</textarea>
+    <textarea id="notes" placeholder="Today I will act on: …">${esc(st.current.notes||'')}</textarea>
   </div>
   <div class="card">
-    <button class="btn primary" onclick="finishPortion()">Portion abschließen & nächste freischalten</button>
-    <p class="hint">Danach rückt die Position um ${portion.n} Ayat weiter. Wenn du heute nicht fertig wirst: Portion bleibt einfach stehen – morgen weitermachen.</p>
+    <button class="btn primary" onclick="finishPortion()">Complete portion & unlock the next</button>
+    <p class="hint">The position then moves ahead by ${portion.n} ayat. If you don't finish today, the portion simply stays – continue tomorrow.</p>
   </div>`;
 }
 
@@ -483,14 +532,14 @@ function doneBtn(id, label){
 function render(){
   renderHead(); renderSteps();
   const v = document.getElementById('view');
-  if (!portion) { v.innerHTML = '<div class="card">Lade Ayat …</div>'; return; }
+  if (!portion) { v.innerHTML = '<div class="card">Loading ayat …</div>'; return; }
   v.innerHTML = { read:viewRead, understand:viewUnderstand, memorize:viewMemorize, act:viewAct }[step]();
   const k = document.getElementById('knowledge'); if (k) k.oninput = () => { st.current.knowledge = k.value; save(); };
   const n = document.getElementById('notes'); if (n) n.oninput = () => { st.current.notes = n.value; save(); };
   renderReview();
 }
 
-// ---------- Aktionen ----------
+// ---------- Actions ----------
 function markStep(id){
   st.current.steps[id] = true; save();
   const i = STEPS.findIndex(s => s.id === id);
@@ -504,7 +553,7 @@ function setMemo(n,v){ st.current.memo[n] = v; save(); render(); }
 function finishPortion(){
   const c = st.current, p = portion;
   st.log.push({ date:today(), s:p.s, from:p.a, to:p.a+p.n-1, surahName:p.surahName, knowledge:c.knowledge||'', notes:c.notes||'' });
-  // nächste Position: Rest der Surah, dann nächste Surah
+  // next position: rest of the surah, then the next surah
   let s = p.s, a = p.a + p.n;
   if (a > p.total) { s = s === 114 ? 1 : s + 1; a = 1; }
   st.pos = {s,a}; st.current = null; save();
@@ -514,12 +563,12 @@ function finishPortion(){
 function renderReview(){
   const el = document.getElementById('review');
   const recent = st.log.slice(-7).reverse();
-  if (!recent.length) { el.innerHTML = '<p class="hint">Noch nichts abgeschlossen.</p>'; return; }
-  el.innerHTML = `<p class="hint">Jeden Tag die letzten Portionen einmal aus dem Gedächtnis aufsagen, dann zur Kontrolle anhören.</p>
+  if (!recent.length) { el.innerHTML = '<p class="hint">Nothing completed yet.</p>'; return; }
+  el.innerHTML = `<p class="hint">Every day recite the recent portions once from memory, then listen to check.</p>
   <ul class="log">${recent.map((l,i) => `
     <li><b>${l.date}</b> – Surah ${l.s} ${esc(l.surahName)} ${l.from}–${l.to}
-      <button class="btn" onclick="playList(Array.from({length:${l.to-l.from+1}},(_,k)=>[${l.s},${l.from}+k]))">▶ anhören</button>
-      ${l.notes ? `<div class="hint">Umsetzen: ${esc(l.notes)}</div>` : ''}
+      <button class="btn" onclick="playList(Array.from({length:${l.to-l.from+1}},(_,k)=>[${l.s},${l.from}+k]))">▶ listen</button>
+      ${l.notes ? `<div class="hint">Act on: ${esc(l.notes)}</div>` : ''}
     </li>`).join('')}</ul>`;
 }
 
@@ -534,7 +583,7 @@ document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => {
   window.scrollTo({top:0});
 });
 
-// ---------- Wird (fortlaufendes Lesen, 604 Seiten Madīnah-Mushaf) ----------
+// ---------- Wird (continuous reading, 604 pages of the Madinah Mushaf) ----------
 const PAGES = 604;
 const wirdPerDay = () => Math.ceil(PAGES / st.wird.days);
 async function fetchPage(p){
@@ -546,10 +595,10 @@ async function renderWird(){
   const from = w.page, to = Math.min(PAGES, from + n - 1);
   const doneToday = w.log.some(l => l.date === today());
   document.getElementById('wird-head').innerHTML = `
-    <b>Heute:</b> Seiten ${from}–${to} von ${PAGES} · Khatm in ${w.days} Tagen
-    <div class="hint">${doneToday ? '✓ Heute schon ein Wird gelesen.' : 'Langsam lesen, Aya für Aya.'} Abgeschlossene Khatmāt: ${w.khatmat||0}</div>`;
+    <b>Today:</b> pages ${from}–${to} of ${PAGES} · completion in ${w.days} days
+    <div class="hint">${doneToday ? '✓ Wird already read today.' : 'Read slowly, ayah by ayah.'} Completions (khatmāt): ${w.khatmat||0}</div>`;
   const v = document.getElementById('wird-view');
-  v.innerHTML = '<div class="card">Lade Seiten …</div>';
+  v.innerHTML = '<div class="card">Loading pages …</div>';
   try {
     let html = '';
     for (let p = from; p <= to; p++) {
@@ -564,11 +613,11 @@ async function renderWird(){
           }
         }
         return `${head}${text} ${ayahNum(x.numberInSurah)}`;
-      }).join(' ') + `</div><div class="page-no">Seite ${p}</div></div>`;
+      }).join(' ') + `</div><div class="page-no">Page ${p}</div></div>`;
     }
-    v.innerHTML = html + `<div class="card"><button class="btn primary" onclick="finishWird(${to})">Wird gelesen – weiter ab Seite ${to === PAGES ? 1 : to + 1}</button></div>`;
+    v.innerHTML = html + `<div class="card"><button class="btn primary" onclick="finishWird(${to})">Wird read – continue from page ${to === PAGES ? 1 : to + 1}</button></div>`;
   } catch(e){
-    v.innerHTML = `<div class="card">Konnte Seiten nicht laden (Internet?).<br><span class="hint">${esc(e.message)}</span></div>`;
+    v.innerHTML = `<div class="card">Could not load pages (internet?).<br><span class="hint">${esc(e.message)}</span></div>`;
   }
 }
 function finishWird(to){
@@ -579,7 +628,7 @@ function finishWird(to){
   save(); renderWird(); window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// ---------- Einstellungen ----------
+// ---------- Settings ----------
 function fillSettings(){
   document.getElementById('set-wird').value = st.wird.days;
   document.getElementById('set-wird-page').value = st.wird.page;
@@ -609,21 +658,40 @@ document.getElementById('export').onclick = () => {
 document.getElementById('import').onchange = async e => {
   const f = e.target.files[0]; if (!f) return;
   try { st = {...load(), ...JSON.parse(await f.text())}; st.cache = st.cache || {}; st.wird = st.wird || { page:1, days:30, log:[] }; save(); init(); }
-  catch(err){ alert('Import fehlgeschlagen: '+err.message); }
+  catch(err){ alert('Import failed: '+err.message); }
+};
+
+function sadiStatus(){
+  document.getElementById('sadi-status').textContent = sadiEn
+    ? `as-Sa'di (English) is on this device: ${Object.keys(sadiEn).length} ayat.`
+    : `as-Sa'di (English) not imported yet.`;
+}
+document.getElementById('import-sadi').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  const status = document.getElementById('sadi-status');
+  status.textContent = 'Importing …';
+  try {
+    const data = JSON.parse(await f.text());
+    if (!data['2:1']) throw new Error('This is not the sadi-en.json file.');
+    await idbPut('sadi-en', data); sadiEn = data;
+    sadiStatus(); render();
+  } catch(err){ status.textContent = 'Import failed: ' + err.message; }
 };
 
 async function init(){
   fillSettings();
+  if (!sadiEn) await loadSadiEn();
+  sadiStatus();
   const c = ensureCurrent();
   portion = null; render();
   try {
     portion = await fetchPortion(c.s, c.a, c.n);
-    // Portion endet am Surah-Ende
+    // a portion ends at the end of the surah
     c.n = portion.n; save();
-    // ersten offenen Schritt zeigen
+    // show the first open step
     step = (STEPS.find(s => !c.steps[s.id]) || STEPS[3]).id;
   } catch(e){
-    document.getElementById('view').innerHTML = `<div class="card">Konnte Ayat nicht laden (Internet?). <br><span class="hint">${esc(e.message)}</span></div>`;
+    document.getElementById('view').innerHTML = `<div class="card">Could not load ayat (internet?). <br><span class="hint">${esc(e.message)}</span></div>`;
     return;
   }
   render();
