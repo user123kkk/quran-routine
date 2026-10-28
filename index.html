@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quran Routine</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#2f6b4f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f4ee; --card:#fffdf9; --ink:#1f2421; --muted:#6b706c; --line:#e4ded2;
+  --accent:#2f6b4f; --accent-soft:#e3efe8; --warn:#9a6a1c;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#141715; --card:#1c201e; --ink:#e9e6df; --muted:#9aa09b; --line:#2c312e;
+         --accent:#7cc39c; --accent-soft:#22342a; --warn:#e0b25e; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 80px}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}
+.meta{color:var(--muted);font-size:14px}
+.athar{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:16px 0;font-size:14px;color:var(--muted)}
+.athar .ar{font-family:Amiri,serif;font-size:19px;color:var(--ink);direction:rtl;text-align:right;line-height:1.9}
+.steps{display:flex;gap:6px;margin:18px 0;flex-wrap:wrap}
+.steps button{flex:1;min-width:120px;padding:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;cursor:pointer;font:inherit;font-size:14px}
+.steps button.active{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.steps button.done::before{content:"✓ ";color:var(--accent)}
+.steps button:disabled{opacity:.4;cursor:not-allowed}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0}
+.ayah-ar{font-family:"Amiri Quran",Amiri,serif;font-size:32px;line-height:2.3;direction:rtl;text-align:right}
+.num{display:inline-block;font-family:Amiri,serif;font-size:20px;color:var(--accent);margin:0 6px}
+.de{color:var(--muted);margin-top:8px}
+.tafsir{font-family:Amiri,serif;font-size:21px;line-height:2;direction:rtl;text-align:right;border-top:1px dashed var(--line);margin-top:12px;padding-top:12px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.btn{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer;font:inherit;font-size:14px}
+.btn.primary{background:var(--accent);color:var(--card);border-color:var(--accent)}
+.btn.on{background:var(--accent-soft);border-color:var(--accent)}
+.hidden-text{filter:blur(9px);user-select:none;transition:filter .2s}
+.hidden-text:hover{filter:blur(6px)}
+.counter{font-variant-numeric:tabular-nums;min-width:56px;text-align:center}
+textarea{width:100%;min-height:110px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:10px;font:inherit}
+label.chk{display:flex;gap:8px;align-items:center;cursor:pointer}
+.hint{font-size:13px;color:var(--muted)}
+.basmala{font-family:"Amiri Quran",serif;font-size:28px;text-align:center;margin:6px 0 4px}
+details{margin-top:8px}
+summary{cursor:pointer;color:var(--muted);font-size:14px}
+input,select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.log li{margin:4px 0}
+a{color:var(--accent)}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:max(20px,env(safe-area-inset-top,0px))}
+@media (max-width:600px){
+  .wrap{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+  .steps button{min-width:calc(50% - 3px);padding:12px 6px}
+  .card{padding:14px}
+  .ayah-ar{font-size:28px;line-height:2.2}
+  .tafsir{font-size:19px}
+  .btn{padding:10px 12px}
+  .athar .ar{font-size:17px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Quran Routine</h1>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="athar">
+    <div class="ar">كانوا إذا تعلّموا من النبي ﷺ عشر آيات لم يجاوزوها حتى يعلموا ما فيها من العلم والعمل، قالوا: فتعلّمنا القرآن والعلم والعمل جميعًا</div>
+    Abu ʿAbd ar-Raḥmān as-Sulamī über die Sahaba (Ibn Masʿūd u.a.): Sie lernten zehn Ayat und gingen nicht weiter, bis sie das Wissen und das Handeln darin gelernt hatten. Darum: erst lesen, verstehen, auswendig, umsetzen. Dann weiter.
+  </div>
+
+  <div class="card" id="today-head"></div>
+
+  <div class="steps" id="steps"></div>
+  <div id="view"></div>
+
+  <details class="card" id="review-box">
+    <summary>Wiederholung (Murājaʿa) der letzten Portionen</summary>
+    <div id="review"></div>
+  </details>
+
+  <details class="card">
+    <summary>Einstellungen</summary>
+    <div class="grid" style="margin-top:12px">
+      <label>Ayat pro Tag<br><input type="number" id="set-n" min="1" max="40"></label>
+      <label>Rezitator<br>
+        <select id="set-reciter">
+          <option value="Husary_128kbps">al-Ḥuṣarī (langsam, gut zum Lernen)</option>
+          <option value="Minshawy_Murattal_128kbps">al-Minshāwī</option>
+          <option value="Alafasy_128kbps">Mishārī al-ʿAfāsī</option>
+        </select></label>
+      <label>Wiederholungen bis „sitzt“<br><input type="number" id="set-reps" min="1" max="50"></label>
+      <label>Position (Surah:Aya)<br><input id="set-pos" placeholder="2:1"></label>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="set-save">Speichern</button>
+      <button class="btn" id="export">Backup exportieren</button>
+      <label class="btn">Backup importieren<input type="file" id="import" accept=".json" hidden></label>
+    </div>
+    <p class="hint">Alles bleibt lokal in diesem Browser. Position ändern setzt die heutige Portion neu.</p>
+  </details>
+</div>
+
+<script>
+const KEY = 'quranRoutine.v1';
+const STEPS = [
+  {id:'read', name:'1 · Lesen'},
+  {id:'understand', name:'2 · Verstehen'},
+  {id:'memorize', name:'3 · Auswendig'},
+  {id:'act', name:'4 · Anwenden'},
+];
+const BASMALA = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
+
+function load(){
+  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) return s; } catch(e){}
+  return { pos:{s:1,a:1}, n:10, reps:10, reciter:'Husary_128kbps', current:null, log:[], cache:{} };
+}
+let st = load();
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){ alert('Speichern fehlgeschlagen: '+e.message); } }
+
+const today = () => new Date().toISOString().slice(0,10);
+const pad = (n,l=3) => String(n).padStart(l,'0');
+const arNum = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const stripTags = h => (h||'').replace(/<\/p>|<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'').trim();
+
+// ---------- Daten ----------
+async function getJSON(url){
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(r.status+' '+url);
+  return r.json();
+}
+
+async function fetchPortion(s, a, n){
+  const key = `${s}:${a}:${n}`;
+  if (st.cache[key]) return st.cache[key];
+  const q = await getJSON(`https://api.alquran.cloud/v1/surah/${s}/editions/quran-uthmani,de.bubenheim?offset=${a-1}&limit=${n}`);
+  const [ar, de] = q.data;
+  const ayat = ar.ayahs.map((x,i) => {
+    let text = x.text;
+    // Basmala steht in Aya 1 jeder Surah (außer 1 und 9) mit im Text – wird separat angezeigt
+    if (x.numberInSurah === 1 && s !== 1 && s !== 9) text = text.split(/\s+/).slice(4).join(' ');
+    return { n:x.numberInSurah, ar:text, de:de.ayahs[i].text, tafsir:'' };
+  });
+  // Tafsir as-Saʿdī (arabisch) – quran.com Ressource 91
+  await Promise.all(ayat.map(async y => {
+    try {
+      const t = await getJSON(`https://api.quran.com/api/v4/tafsirs/91/by_ayah/${s}:${y.n}`);
+      const verses = Object.keys(t.tafsir.verses || {});
+      y.tafsir = stripTags(t.tafsir.text);
+      y.group = verses.length > 1 ? verses : null;
+    } catch(e){ y.tafsir = ''; }
+  }));
+  const portion = { s, a, n:ayat.length, surahName:ar.englishName, surahAr:ar.name, total:ar.numberOfAyahs, ayat };
+  // Cache klein halten: nur letzte 30 Portionen
+  const keys = Object.keys(st.cache); if (keys.length > 30) delete st.cache[keys[0]];
+  st.cache[key] = portion; save();
+  return portion;
+}
+
+function ensureCurrent(){
+  if (!st.current){
+    st.current = { s:st.pos.s, a:st.pos.a, n:st.n, started:today(), steps:{}, memo:{}, reps:{}, notes:'' };
+    save();
+  }
+  return st.current;
+}
+
+// ---------- Audio ----------
+let audio = new Audio(), queue = [], loopOne = false;
+function audioUrl(s,a){ return `https://everyayah.com/data/${st.reciter}/${pad(s)}${pad(a)}.mp3`; }
+function playList(list, loop=false){
+  queue = list.slice(); loopOne = loop;
+  next();
+}
+function next(){
+  if (!queue.length) return;
+  const [s,a] = queue[0];
+  audio.src = audioUrl(s,a); audio.play().catch(()=>{});
+  audio.onended = () => { if (!loopOne) queue.shift(); next(); };
+}
+function stopAudio(){ queue = []; audio.pause(); }
+
+// ---------- Ansicht ----------
+let portion = null, step = 'read';
+
+function streak(){
+  const days = new Set(st.log.map(l => l.date));
+  let c = 0, d = new Date();
+  if (!days.has(today())) d.setDate(d.getDate()-1);
+  while (days.has(d.toISOString().slice(0,10))) { c++; d.setDate(d.getDate()-1); }
+  return c;
+}
+
+function renderHead(){
+  const c = st.current, p = portion;
+  document.getElementById('meta').textContent =
+    `Serie: ${streak()} Tage · abgeschlossen: ${st.log.length} Portionen`;
+  const doneToday = st.log.some(l => l.date === today());
+  document.getElementById('today-head').innerHTML = p ? `
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <div><b>Heute:</b> Surah ${p.s} ${esc(p.surahName)} <span style="font-family:Amiri">${p.surahAr}</span>, Ayat ${p.a}–${p.a+p.n-1}</div>
+      <div class="hint">${doneToday ? '✓ Heute schon eine Portion abgeschlossen – das hier ist Bonus.' : 'begonnen am '+c.started}</div>
+    </div>` : 'Lade …';
+}
+
+function renderSteps(){
+  const c = st.current;
+  const el = document.getElementById('steps'); el.innerHTML = '';
+  STEPS.forEach((s,i) => {
+    const b = document.createElement('button');
+    b.textContent = s.name;
+    if (c.steps[s.id]) b.classList.add('done');
+    if (s.id === step) b.classList.add('active');
+    // nicht weiter, bevor der vorige Schritt abgeschlossen ist
+    if (i > 0 && !c.steps[STEPS[i-1].id]) b.disabled = true;
+    b.onclick = () => { step = s.id; render(); };
+    el.appendChild(b);
+  });
+}
+
+function ayahNum(n){ return `<span class="num">﴿${arNum(n)}﴾</span>`; }
+function basmalaIfNeeded(){
+  const p = portion;
+  return (p.a === 1 && p.s !== 1 && p.s !== 9) ? `<div class="basmala">${BASMALA}</div>` : '';
+}
+
+function viewRead(){
+  const p = portion;
+  return `
+  <div class="card">
+    <div class="row" style="margin-top:0">
+      <button class="btn" onclick="playList(portion.ayat.map(y=>[portion.s,y.n]))">▶ Alle anhören</button>
+      <button class="btn" onclick="stopAudio()">■ Stopp</button>
+      <span class="hint">Lies langsam mit, Blick auf jedes Wort.</span>
+    </div>
+  </div>
+  ${basmalaIfNeeded()}
+  ${p.ayat.map(y => `
+    <div class="card">
+      <div class="ayah-ar">${y.ar} ${ayahNum(y.n)}</div>
+      <div class="de">${y.n}. ${esc(y.de)}</div>
+      <div class="row"><button class="btn" onclick="playList([[${p.s},${y.n}]])">▶</button></div>
+    </div>`).join('')}
+  ${doneBtn('read','Gelesen – weiter zu Verstehen')}`;
+}
+
+function viewUnderstand(){
+  const p = portion;
+  return `
+  <div class="card hint">
+    Tafsīr as-Saʿdī (Taysīr al-Karīm ar-Raḥmān) im arabischen Original. Englische Übersetzung als PDF:
+    <a href="https://www.kalamullah.com/tafseer-as-sadi.html" target="_blank" rel="noopener">kalamullah.com – Tafseer as-Sa'di</a>.
+    Saʿdī erklärt oft mehrere Ayat zusammen; dann steht die Erklärung bei der ersten Aya der Gruppe.
+  </div>
+  ${p.ayat.map(y => `
+    <div class="card">
+      <div class="ayah-ar">${y.ar} ${ayahNum(y.n)}</div>
+      <div class="de">${y.n}. ${esc(y.de)}</div>
+      ${y.tafsir
+        ? `<div class="tafsir">${esc(y.tafsir).replace(/\n+/g,'<br><br>')}</div>`
+        : `<div class="hint" style="margin-top:10px">Erklärung steht bei einer vorherigen Aya dieser Gruppe.</div>`}
+    </div>`).join('')}
+  <div class="card">
+    <b>Wissen aus diesen Ayat</b> <span class="hint">(kurz in eigenen Worten: Worum geht es? Was lehrt Allah hier?)</span>
+    <textarea id="knowledge" placeholder="z.B. Aya 3: Merkmale der Muttaqīn – Glaube an das Verborgene, Gebet verrichten, ausgeben …">${esc(st.current.knowledge||'')}</textarea>
+  </div>
+  ${doneBtn('understand','Verstanden – weiter zum Auswendiglernen')}`;
+}
+
+function viewMemorize(){
+  const p = portion, c = st.current;
+  const allOk = p.ayat.every(y => c.memo[y.n]);
+  return `
+  <div class="card hint">
+    Methode: Aya anhören und mitlesen, dann verdecken und aus dem Gedächtnis aufsagen. Jede Wiederholung zählen.
+    Danach die Aya mit der vorherigen verbinden. Ziel: ${st.reps}× fehlerfrei.
+  </div>
+  ${p.ayat.map(y => `
+    <div class="card">
+      <div class="ayah-ar ${c.memo['h'+y.n] ? 'hidden-text' : ''}" id="ar-${y.n}">${y.ar} ${ayahNum(y.n)}</div>
+      <div class="row">
+        <button class="btn" onclick="playList([[${p.s},${y.n}]])">▶ 1×</button>
+        <button class="btn" onclick="playList([[${p.s},${y.n}]],true)">🔁 Schleife</button>
+        <button class="btn" onclick="stopAudio()">■</button>
+        <button class="btn ${c.memo['h'+y.n]?'on':''}" onclick="toggleHide(${y.n})">${c.memo['h'+y.n] ? 'Aufdecken' : 'Verdecken'}</button>
+        <button class="btn" onclick="rep(${y.n},-1)">−</button>
+        <span class="counter">${c.reps[y.n]||0} / ${st.reps}</span>
+        <button class="btn" onclick="rep(${y.n},1)">+1 aufgesagt</button>
+        <label class="chk"><input type="checkbox" ${c.memo[y.n]?'checked':''} onchange="setMemo(${y.n},this.checked)"> sitzt</label>
+      </div>
+      ${y.n > p.a ? `<div class="row"><button class="btn" onclick="playList(portion.ayat.filter(z=>z.n<=${y.n}).map(z=>[portion.s,z.n]))">▶ Verbinden: Ayat ${p.a}–${y.n}</button></div>` : ''}
+    </div>`).join('')}
+  ${allOk ? doneBtn('memorize','Alles sitzt – weiter zu Anwenden') : `<div class="card hint">Markiere jede Aya mit „sitzt“, dann geht es weiter.</div>`}`;
+}
+
+function viewAct(){
+  return `
+  <div class="card">
+    <p style="margin-top:0">Die Sahaba lernten <i>das Handeln</i> in den Ayat, bevor sie weitergingen. Frag dich:</p>
+    <ul class="hint">
+      <li>Welcher Befehl oder welches Verbot steckt hier drin?</li>
+      <li>Welche Eigenschaft liebt Allah hier – welche hasst Er?</li>
+      <li>Was ändere ich heute konkret (eine Sache, klein und machbar)?</li>
+    </ul>
+    <textarea id="notes" placeholder="Heute setze ich um: …">${esc(st.current.notes||'')}</textarea>
+  </div>
+  <div class="card">
+    <button class="btn primary" onclick="finishPortion()">Portion abschließen & nächste freischalten</button>
+    <p class="hint">Danach rückt die Position um ${portion.n} Ayat weiter. Wenn du heute nicht fertig wirst: Portion bleibt einfach stehen – morgen weitermachen.</p>
+  </div>`;
+}
+
+function doneBtn(id, label){
+  return `<div class="card"><button class="btn primary" onclick="markStep('${id}')">${label}</button></div>`;
+}
+
+function render(){
+  renderHead(); renderSteps();
+  const v = document.getElementById('view');
+  if (!portion) { v.innerHTML = '<div class="card">Lade Ayat …</div>'; return; }
+  v.innerHTML = { read:viewRead, understand:viewUnderstand, memorize:viewMemorize, act:viewAct }[step]();
+  const k = document.getElementById('knowledge'); if (k) k.oninput = () => { st.current.knowledge = k.value; save(); };
+  const n = document.getElementById('notes'); if (n) n.oninput = () => { st.current.notes = n.value; save(); };
+  renderReview();
+}
+
+// ---------- Aktionen ----------
+function markStep(id){
+  st.current.steps[id] = true; save();
+  const i = STEPS.findIndex(s => s.id === id);
+  if (STEPS[i+1]) step = STEPS[i+1].id;
+  stopAudio(); render(); window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleHide(n){ st.current.memo['h'+n] = !st.current.memo['h'+n]; save(); render(); }
+function rep(n,d){ st.current.reps[n] = Math.max(0,(st.current.reps[n]||0)+d); if (st.current.reps[n] >= st.reps) st.current.memo[n] = true; save(); render(); }
+function setMemo(n,v){ st.current.memo[n] = v; save(); render(); }
+
+function finishPortion(){
+  const c = st.current, p = portion;
+  st.log.push({ date:today(), s:p.s, from:p.a, to:p.a+p.n-1, surahName:p.surahName, knowledge:c.knowledge||'', notes:c.notes||'' });
+  // nächste Position: Rest der Surah, dann nächste Surah
+  let s = p.s, a = p.a + p.n;
+  if (a > p.total) { s = s === 114 ? 1 : s + 1; a = 1; }
+  st.pos = {s,a}; st.current = null; save();
+  stopAudio(); step = 'read'; init();
+}
+
+function renderReview(){
+  const el = document.getElementById('review');
+  const recent = st.log.slice(-7).reverse();
+  if (!recent.length) { el.innerHTML = '<p class="hint">Noch nichts abgeschlossen.</p>'; return; }
+  el.innerHTML = `<p class="hint">Jeden Tag die letzten Portionen einmal aus dem Gedächtnis aufsagen, dann zur Kontrolle anhören.</p>
+  <ul class="log">${recent.map((l,i) => `
+    <li><b>${l.date}</b> – Surah ${l.s} ${esc(l.surahName)} ${l.from}–${l.to}
+      <button class="btn" onclick="playList(Array.from({length:${l.to-l.from+1}},(_,k)=>[${l.s},${l.from}+k]))">▶ anhören</button>
+      ${l.notes ? `<div class="hint">Umsetzen: ${esc(l.notes)}</div>` : ''}
+    </li>`).join('')}</ul>`;
+}
+
+// ---------- Einstellungen ----------
+function fillSettings(){
+  document.getElementById('set-n').value = st.n;
+  document.getElementById('set-reps').value = st.reps;
+  document.getElementById('set-reciter').value = st.reciter;
+  document.getElementById('set-pos').value = `${st.pos.s}:${st.pos.a}`;
+}
+document.getElementById('set-save').onclick = () => {
+  st.n = Math.max(1, Math.min(40, +document.getElementById('set-n').value || 10));
+  st.reps = Math.max(1, +document.getElementById('set-reps').value || 10);
+  st.reciter = document.getElementById('set-reciter').value;
+  const m = document.getElementById('set-pos').value.match(/^(\d+):(\d+)$/);
+  if (m) {
+    const np = {s:+m[1], a:+m[2]};
+    if (np.s !== st.pos.s || np.a !== st.pos.a || !st.current || st.current.n !== st.n) { st.pos = np; st.current = null; }
+  }
+  save(); init();
+};
+document.getElementById('export').onclick = () => {
+  const b = new Blob([JSON.stringify({...st, cache:{}}, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `quran-routine-${today()}.json`; a.click();
+};
+document.getElementById('import').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try { st = {...load(), ...JSON.parse(await f.text())}; st.cache = st.cache || {}; save(); init(); }
+  catch(err){ alert('Import fehlgeschlagen: '+err.message); }
+};
+
+async function init(){
+  fillSettings();
+  const c = ensureCurrent();
+  portion = null; render();
+  try {
+    portion = await fetchPortion(c.s, c.a, c.n);
+    // Portion endet am Surah-Ende
+    c.n = portion.n; save();
+    // ersten offenen Schritt zeigen
+    step = (STEPS.find(s => !c.steps[s.id]) || STEPS[3]).id;
+  } catch(e){
+    document.getElementById('view').innerHTML = `<div class="card">Konnte Ayat nicht laden (Internet?). <br><span class="hint">${esc(e.message)}</span></div>`;
+    return;
+  }
+  render();
+}
+init();
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
